@@ -1,21 +1,21 @@
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import CounterScreen from './app/screens/CounterScreen';
 
 const App = () => {
+  const Stack = createNativeStackNavigator();
   return (
-    <SafeAreaView style={styles.appContainer}>
-      <View>
-        <Text>App</Text>
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Count"
+          component={CounterScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
 export default App;
-
-const styles = StyleSheet.create({
-  appContainer: {
-    flex: 1,
-    backgroundColor: '#fff000',
-  },
-});
