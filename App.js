@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import CounterScreen from './app/screens/CounterScreen';
 import {Provider} from 'react-redux';
-import {Store} from './app/redux/store';
+import {Store} from './app/updateRedux/Store';
+import {Counter} from './app/screens/Counter';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -13,7 +13,7 @@ const App = () => {
         <Stack.Navigator>
           <Stack.Screen
             name="Count"
-            component={CounterScreen}
+            component={Counter}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
