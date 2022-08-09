@@ -1,30 +1,36 @@
 import {
-  Button,
-  Image,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {Images} from '../utility/Images';
-
+import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {
+  // INCREMENT_COUNT,
+  // DECREMENT_COUNT,
+  setDecrement,
+  setIncrement,
+} from '../redux/Action';
 const CounterScreen = () => {
-  const [count, setCount] = useState(0);
+  const {count} = useSelector(state => state.userReducer);
+  const dispatch = useDispatch();
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#224f85" />
       <TouchableOpacity
         activeOpacity={1}
         style={styles.iconView}
-        onPress={() => setCount(count - 1)}>
-        <Image source={Images.minusIcon} style={styles.minusIcon} />
+        onPress={() => dispatch(setDecrement(count))}>
+        <Text style={styles.minusIcon}>-1</Text>
       </TouchableOpacity>
       <Text style={styles.counterText}>{count}</Text>
       <TouchableOpacity
         activeOpacity={1}
         style={styles.iconView}
-        onPress={() => setCount(count + 1)}>
-        <Image source={Images.plusIcon} style={styles.plusIcon} />
+        onPress={() => dispatch(setIncrement(count))}>
+        <Text style={styles.plusIcon}>+1</Text>
       </TouchableOpacity>
     </View>
   );
@@ -37,28 +43,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    flexDirection: 'row',
-    marginHorizontal: 12,
+    flexDirection: 'column',
+    backgroundColor: '#224f85',
   },
   iconView: {
     height: 50,
-    width: 50,
+    width: 150,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 12,
+    borderRadius: 20,
+    marginVertical: 100,
   },
   counterText: {
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: '600',
-    color: '#000000',
+    color: '#75e6e2',
   },
   minusIcon: {
-    height: 20,
-    width: 20,
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000000',
   },
   plusIcon: {
-    height: 20,
-    width: 20,
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000000',
   },
 });
